@@ -13,7 +13,7 @@ public partial class CustomTipPage : ContentPage
         tipPercentSlider.ValueChanged += (s, e) =>
         {
             double pct = Math.Round(e.NewValue);
-            tipPercent.Text = $"{pct}%";
+            tipPercentLabel.Text = $"{pct}%";
             CalculateTip(false, false);
         };
     }
@@ -44,6 +44,10 @@ public partial class CustomTipPage : ContentPage
         }
     }
 
-    void OnNormalTip(object sender, EventArgs e) { tipPercentSlider.Value = 15; }
-    void OnGenerousTip(object sender, EventArgs e) { tipPercentSlider.Value = 20; }
+    void OnNormalTip(object sender, EventArgs e) => tipPercentSlider.Value = 15;
+
+    void OnGenerousTip(object sender, EventArgs e) => tipPercentSlider.Value = 20;
+    void OnRoundDown(object sender, EventArgs e) => CalculateTip(false, true);
+
+    void OnRoundUp(object sender, EventArgs e) => CalculateTip(true, false);
 }
